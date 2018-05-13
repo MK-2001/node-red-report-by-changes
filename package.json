@@ -9,10 +9,10 @@
         "url":"https://github.com/MK-2001/node-red-report-by-changes/new/master"
     },
     "license": "Apache-2.0",
-    "keywords": [ "node-red", "rbe", "bandgap", "deadband" ],
+    "keywords": [ "node-red", "rbc"],
     "node-red"      : {
         "nodes"     : {
-            "rbe": "rbe.js"
+            "rbc": "rbc.js"
         }
     },
     "author": {
