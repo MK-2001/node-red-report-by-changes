@@ -1,0 +1,89 @@
+<script type="text/x-red" data-help-name="rbe">
+    <p>Report by Change node - passes only the messages if the value has changed. </p>
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>payload
+            <span class="property-type">number</span>
+        </dt>
+        <dd>RBC node will accept only numbers.</dd>
+        <dt>reset</dt>
+        <dd>If set it will reset all previos messages and starts new.</dd>
+    </dl>
+    <h3>Outputs</h3>
+    <dl class="message-properties">
+        <dt>payload</dt>
+        <dd>If defined definition gets true, it will forward the msg object.</dd>
+    </dl>
+    <h3>Details</h3>
+    <p>It is good for...</p>
+</script>
+
+<script type="text/x-red" data-template-name="rbc">
+    <div class="form-row">
+        <label for="node-input-func"><i class="fa fa-wrench"></i> <span data-i18n="rbc.label.func"></span></label>
+        <select type="text" id="node-input-func" style="width:70%;">
+            <option value="gt" data-i18n="rbc.opts.gt"></option>
+            <option value="lt" data-i18n="rbc.opts.lt"></option>
+        </select>
+    </div>
+    <div class="form-row" id="node-out">
+        <label for="node-input-out">&nbsp;</label>
+        <select type="text" id="node-input-out" style="width:70%;">
+            <option value="this" data-i18n="rbc.opts.this"></option>
+            <option value="prev" data-i18n="rbe.opts.prev"></option>
+            <option value="first" data-i18n="rbe.opts.first"></option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-property"><i class="fa fa-ellipsis-h"></i> <span data-i18n="node-red:common.label.property"></span></label>
+        <input type="text" id="node-input-property" style="width:70%;"/>
+    </div>
+    <div class="form-row">
+        <label for="node-input-topic"><i class="fa fa-ellipsis-h"></i> <span data-i18n="node-red:common.label.topic"></span></label>
+        <input type="text" id="node-input-topic" style="width:70%;"/>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"/> <span data-i18n="rbe.label.name"></span></label>
+        <input type="text" id="node-input-name" data-i18n="[placeholder]rbe.label.name" style="width:70%;">
+    </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType("rbc", {
+        color:"#E2D96E",
+        category: 'function',
+        defaults: {
+            name: {value:""},
+            func: {value:"gt", required:true},
+            gap: {value:"",validate:RED.validators.regex(/^[+-]?([0-9]*[.])?[0-9]+$/)},
+            property: {value:"payload",required:true}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "rbc.png",
+        label: function() {
+            var ll = (this.func||"")||this._("rbc.rbc");
+            return this.name||ll||this._("rbc.rbc");
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            if (this.property === undefined) {
+                $("#node-input-property").val("payload");
+            }
+            if (this.topic === undefined) {
+                $("#node-input-topic").val("topic");
+            }
+            $("#node-input-property").typedInput({default:'msg',types:['msg']});
+            $("#node-input-topic").typedInput({default:'msg',types:['msg']});
+            if ($("#node-input-func").val() === null) {
+                $("#node-input-func").val("gt");
+            }
+
+            if ($("#node-input-out").val() === null) {
+                $("#node-input-out").val("last");
+            }
+        }
+    });
+</script>
