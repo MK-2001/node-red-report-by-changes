@@ -1,0 +1,21 @@
+{
+    "rbc": {
+        "rbc": "rbc",
+        "label": {
+            "func": "Mode",
+            "init": "Send initial value",
+            "name": "Name"
+        },
+        "opts": {
+            "gt": "mehr als in der Nachricht zuvor",
+            "lt": "weniger als in der Nachricht zuvor",
+            "this": "die aktuelle Nachricht weiterleiten",
+            "prev": "die letzte Nachricht weiterleiten",
+            "first": "die erste Nachricht weiterleiten",
+
+        },
+        "warn": {
+            "nonumber": "no number"
+        }
+    }
+}
