@@ -1,5 +1,5 @@
 {
-  "name": "node-red-node-rpc",
+  "name": "node-red-contrib-rpc",
   "version": "1.0.4",
   "description": "It is a node for node-red which sends data only if tehre is a defined change in the message. E.g. smaller, greater value.",
   "main": "rbc.js",
@@ -11,10 +11,7 @@
     "url": "git+https://github.com/MK-2001/node-red-report-by-changes.git"
   },
   "keywords": [
-    "node-red",
-    "report-by-change",
-    "change"
-  ],
+    "node-red" ],
   "node-red": {
     "nodes": {
       "rbc": "rbc.js"
