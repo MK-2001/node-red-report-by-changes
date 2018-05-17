@@ -1,6 +1,6 @@
 {
   "name": "node-red-report-by-changes",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "It is a node for node-red which sends data only if tehre is a defined change in the message. E.g. smaller, greater value.",
   "main": "rbc.js",
   "scripts": {
