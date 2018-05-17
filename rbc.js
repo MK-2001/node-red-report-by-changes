@@ -24,6 +24,7 @@ module.exports = function(RED) {
       // Function Reset to forget all previos messages
       if (msg.hasOwnProperty("reset")) {
         delete node.previous[t];
+	node.info("Deleted prv topic: " + t.toString());
       }
 
       // Start to save the messages
@@ -41,7 +42,9 @@ module.exports = function(RED) {
           var p = node.previous[t];
           // Select functions
           if((node.func == "lt")) {
+	    // node.info("entered function lt");
             if(v < p) {
+	      // node.info("Value is smaller than prev");
               if(node.out == "first") {
                 node.send(node.firstObj);
                 // delete object to set new "firstObj"
@@ -57,6 +60,7 @@ module.exports = function(RED) {
                 text:v.toString() + " " + node.func + " " + p.toString()
               });
             } else if(v > p) {
+	      // node.info("Value is bigger than prev");
               node.status({
                 fill:"red",
                 shape:"ring",
@@ -100,8 +104,8 @@ module.exports = function(RED) {
             }
           }
           // Last of all, save previos msg-Object & values
-          node.previousObj = msg;
-          node.previous = v;
+          node.previousObj[t] = msg;
+          node.previous[t] = v;
         } else {
           node.warn(RED._("rbc.warn.nonumber"));
         }

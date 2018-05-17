@@ -20,18 +20,18 @@
 
 <script type="text/x-red" data-template-name="rbc">
     <div class="form-row">
-        <label for="node-input-func"><i class="fa fa-wrench"></i> <span data-i18n="rbc.label.func"></span></label>
+        <label for="node-input-func"><i class="fa fa-wrench"></i> Modus</label>
         <select type="text" id="node-input-func" style="width:70%;">
-            <option value="gt" data-i18n="rbc.opts.gt"></option>
-            <option value="lt" data-i18n="rbc.opts.lt"></option>
+            <option value="gt" data-i18n="rbc.opts.gt">Greater than previous message</option>
+            <option value="lt" data-i18n="rbc.opts.lt">smaller than previous message</option>
         </select>
     </div>
-    <div class="form-row" id="node-out">
-        <label for="node-input-out">&nbsp;</label>
+    <div class="form-row">
+        <label for="node-input-out">Forward message</label>
         <select type="text" id="node-input-out" style="width:70%;">
-            <option value="this" data-i18n="rbc.opts.this"></option>
-            <option value="prev" data-i18n="rbe.opts.prev"></option>
-            <option value="first" data-i18n="rbe.opts.first"></option>
+            <option value="this" data-i18n="rbc.opts.this">Current message</option>
+            <option value="prev" data-i18n="rbe.opts.prev">previous message</option>
+            <option value="first" data-i18n="rbe.opts.first">first message</option>
         </select>
     </div>
     <div class="form-row">
@@ -43,8 +43,8 @@
         <input type="text" id="node-input-topic" style="width:70%;"/>
     </div>
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"/> <span data-i18n="rbe.label.name"></span></label>
-        <input type="text" id="node-input-name" data-i18n="[placeholder]rbe.label.name" style="width:70%;">
+        <label for="node-input-name"><i class="fa fa-tag"/> <span data-i18n="rbe.label.name">Name</span></label>
+        <input type="text" id="node-input-name" style="width:70%;">
     </div>
 </script>
 
@@ -55,8 +55,8 @@
         defaults: {
             name: {value:""},
             func: {value:"gt", required:true},
-            gap: {value:"",validate:RED.validators.regex(/^[+-]?([0-9]*[.])?[0-9]+$/)},
-            property: {value:"payload",required:true}
+            property: {value:"payload",required:true},
+            out: {value:"first"}
         },
         inputs:1,
         outputs:1,
@@ -80,9 +80,8 @@
             if ($("#node-input-func").val() === null) {
                 $("#node-input-func").val("gt");
             }
-
             if ($("#node-input-out").val() === null) {
-                $("#node-input-out").val("last");
+                $("#node-input-out").val("first");
             }
         }
     });
