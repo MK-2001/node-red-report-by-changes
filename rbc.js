@@ -35,8 +35,8 @@ module.exports = function(RED) {
           // for the first messages
           if(node.previous[t] === undefined) {
             node.previous[t] = v;
-            node.previousObj = msg;
-            node.firstObj = msg;
+            node.previousObj[t] = msg;
+            node.firstObj[t] = msg;
           }
           // get last value
           var p = node.previous[t];
@@ -46,13 +46,13 @@ module.exports = function(RED) {
             if(v < p) {
 	      // node.info("Value is smaller than prev");
               if(node.out == "first") {
-                node.send(node.firstObj);
+                node.send(node.firstObj[t]);
                 // delete object to set new "firstObj"
                 delete node.previous[t];
               } else if(node.out == "this") {
                 node.send(msg);
               } else if(node.out == "prev") {
-                node.send(node.previousObj);
+                node.send(node.previousObj[t]);
               }
               node.status({
                 fill:"green",

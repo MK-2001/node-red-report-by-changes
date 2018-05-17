@@ -11,7 +11,7 @@ Install
 
 Run the following command in your Node-RED user directory - typically `~/.node-red`
 
-    npm i node-red-node-rbc
+    npm i node-red-report-by-changes
 
 
 Usage
