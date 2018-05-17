@@ -1,4 +1,4 @@
-node-red-report-by-changes
+node-red-contrib-rbc (report-by-changes)
 =================
 
 A <a href="http://nodered.org" target="_new">Node-RED</a> node that provides
@@ -11,7 +11,7 @@ Install
 
 Run the following command in your Node-RED user directory - typically `~/.node-red`
 
-    npm i node-red-report-by-changes
+    npm i node-red-contrib-rbc
 
 
 Usage
