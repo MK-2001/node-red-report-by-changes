@@ -106,7 +106,7 @@ module.exports = function(RED) {
           node.warn(RED._("rbc.warn.nonumber"));
         }
       } // There is no payload
-    }
+    });
   }
   RED.nodes.registerType("rbc",RbcNode);
 }
